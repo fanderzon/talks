@@ -252,10 +252,11 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide>
-          <Headline>Enums</Headline>
-          <Bullet text={["Can hold data"]} />
-          <Bullet text={["Can be composed"]} />
-          <Bullet text={["Can be used as constructors"]} />
+            <Headline>Enums</Headline>
+            <Bullet text={["User defined variant type"]} />
+            <Bullet text={["Can hold data"]} />
+            <Bullet text={["Can be composed"]} />
+            <Bullet text={["Can be used as constructors"]} />
           </Slide>
 
           <Slide>
@@ -266,6 +267,125 @@ export default class Presentation extends React.Component {
               margin="20px auto"
             />
           </Slide>
+
+          <Slide>
+            <Headline>Iterators</Headline>
+          </Slide>
+
+          <Slide>
+            <CodePane
+              textSize={20}
+              lang="rust"
+              source={require("raw!../assets/code/iterators.rs")}
+              margin="20px auto"
+            />
+          </Slide>
+
+          <Slide>
+            <Headline>Option and Result</Headline>
+            <Bullet text={["Special types of enums"]} />
+            <Bullet text={["Option can be None or Some(_)"]} />
+            <Bullet text={["Result Can be Ok(_) or Err(_)"]} />
+          </Slide>
+
+          <Slide>
+            <CodePane
+              textSize={20}
+              lang="rust"
+              source={require("raw!../assets/code/option.rs")}
+              margin="20px auto"
+            />
+          </Slide>
+
+          <Slide>
+            <CodePane
+              textSize={20}
+              lang="rust"
+              source={require("raw!../assets/code/result.rs")}
+              margin="20px auto"
+            />
+          </Slide>
+
+          <CodeSlide
+            transition={[]}
+            lang="rust"
+            code={require("raw!../assets/code/traits.rs")}
+            ranges={[
+              { loc: [0, 9], title: "Traits" },
+              { loc: [0, 3], note: "Traits let you define an interface" },
+              { loc: [4, 9], note: "That you can implement for any data type" },
+              { loc: [10, 21] },
+              { loc: [22, 31], note: "Even collections" },
+              { loc: [37, 40], note: "Our pretty_format is available on i32 and Person" },
+              { loc: [41, 45], note: "As well as Vec<Person>" },
+              { loc: [32, 35], note: "Traits bounds can be applied to generic functions..." },
+              { loc: [33, 34], note: "...so we can be sure any input here has a pretty_format() method that returns a string" },
+            ]}/>
+
+          <Slide>
+            <Headline>A tale of three todo lists</Headline>
+          </Slide>
+           
+          <CodeSlide
+            transition={[]}
+            lang="rust"
+            code={require("raw!../assets/code/todo.rs")}
+            ranges={[
+              { loc: [0, 1], title: "Rust" },
+              { loc: [2, 8], note: "We need a todo item" },
+              { loc: [9, 19], note: "And a way to add todos" },
+              { loc: [20, 25], note: "Remove todos" },
+              { loc: [26, 31], note: "Toggle todos" },
+              { loc: [32, 41], note: "Print todos" },
+              { loc: [51, 53], note: "Let's create an empty todo list and tell the user what to do" },
+              { loc: [54, 59], note: "We need a way to continually get user input" },
+              { loc: [60, 61], note: "And match the first word to a keyword" },
+              { loc: [65, 67] },
+              { loc: [66, 67], note: "And call the appropriate todo helper functions" },
+              { loc: [67, 70] },
+              { loc: [70, 73] },
+              { loc: [73, 76] },
+              { loc: [78, 80], note: "And print the new todo list" },
+            ]}/>
+
+          <CodeSlide
+            transition={[]}
+            lang="javascript"
+            code={require("raw!../assets/code/todo.cpp")}
+            ranges={[
+              { loc: [0, 4], title: "C++" },
+              { loc: [8, 14] },
+              { loc: [15, 20] },
+              { loc: [21, 28] },
+              { loc: [29, 36] },
+              { loc: [37, 47] },
+              { loc: [59, 61] },
+              { loc: [69, 73] },
+              { loc: [62, 68] },
+              { loc: [75, 78] },
+              { loc: [78, 81] },
+              { loc: [81, 85] },
+            ]}/>
+
+          <CodeSlide
+            transition={[]}
+            lang="javascript"
+            code={require("raw!../assets/code/todo.js")}
+            ranges={[
+              { loc: [0, 2], title: "JavaScript" },
+              { loc: [3, 6] },
+              { loc: [7, 16] },
+              { loc: [17, 24] },
+              { loc: [25, 33] },
+              { loc: [34, 43] },
+              { loc: [72, 73] },
+              { loc: [74, 81] },
+              { loc: [51, 54] },
+              { loc: [54, 57] },
+              { loc: [57, 60] },
+              { loc: [60, 63] },
+              { loc: [66, 68] },
+            ]}/>
         </Deck>
       </Spectacle>
     );
