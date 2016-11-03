@@ -1,2 +1,2 @@
 # talks
-Slides from talks
+Slides from my talks
