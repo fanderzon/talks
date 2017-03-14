@@ -119,6 +119,16 @@ export default class Presentation extends React.Component {
             />
           </Slide>
 
+          <Slide>
+            <Heading size={1} fit caps lineHeight={1} textColor="quartenary">
+              Thank you!
+            </Heading>
+            <Link href="https://twitter.com/fredrikanderzon">
+              <Text bold textSize="1em" textColor="tertiary">@fredrikanderzon</Text>
+            </Link>
+            <Image margin="0px auto" height="500px" src={images.ruststhlm.replace("/", "")} />
+          </Slide>
+
         </Deck>
       </Spectacle>
     );
