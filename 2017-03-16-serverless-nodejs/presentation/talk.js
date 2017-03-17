@@ -44,8 +44,8 @@ export function Headline(props) {
 export function List(props) {
   var items = props.items.map( (item, i) => {
       return props.shouldAppear ? (
-        <Appear key={i}><ListItem>{item}</ListItem></Appear>
-      ) : <ListItem margin='0'>{item}</ListItem>;
+        <Appear key={i}><ListItem margin="0">{item}</ListItem></Appear>
+      ) : <ListItem margin="0">{item}</ListItem>;
   })
   return (
     <SpecList textColor="quartenary" {...props}>
@@ -54,6 +54,14 @@ export function List(props) {
   );
 }
 
-export const ItemText = ({ children }) => (
-  <Text textSize="1.2em" caps padding="15px 25px" textColor="tertiary">{children}</Text>
+export const ItemText = props => props.shouldAppear ? (
+  <Appear>
+    <Text textSize="1.2em" caps padding="15px 25px" textColor="tertiary" {...props}>
+      {props.children}
+    </Text>
+  </Appear>
+) : (
+  <Text textSize="1.2em" caps padding="15px 25px" textColor="tertiary" {...props}>
+    {props.children}
+  </Text>
 );
