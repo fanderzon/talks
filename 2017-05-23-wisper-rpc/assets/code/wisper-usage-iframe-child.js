@@ -1,4 +1,4 @@
-import { IframeBridge } from 'wisper-js';
+import { IframeBridge } from 'wisper-rpc';
 
 const bridge = new IframeBridge(window.parent);
 

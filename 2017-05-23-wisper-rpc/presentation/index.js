@@ -17,8 +17,10 @@ import {
   CodePane,
   Layout,
   Fit,
-  Fill
+  Fill,
+  Link
 } from "spectacle";
+import CodeSlide from 'spectacle-code-slide';
 import DoubleCodePane from './DoubleCodePane';
 
 // Import image preloader util
@@ -35,7 +37,7 @@ require("spectacle/lib/themes/default/index.css");
 import Interactive from '../assets/interactive.js';
 
 const images = {
-  wisperLogo: require('../assets/img/wisper-logo.png'),
+  wisperLogo: require('../assets/img/wisper-logo.svg'),
   victorystick: require('../assets/img/github-victorystick.png'),
 };
 
@@ -174,7 +176,7 @@ export default class Presentation extends React.Component {
             <p>Again, id could be ommitted here if you dont want a response, it is then a Notification request in JSON RPC/Wisper terms</p>
           '
         >
-          <Heading size={1} textColor="secondary" caps>Static method calls</Heading>
+          <Heading size={1} fit textColor="secondary" caps>Static method calls</Heading>
           <DoubleCodePane
             left={{
               lang: 'javascript',
@@ -230,13 +232,13 @@ export default class Presentation extends React.Component {
             <p>Want to access native functionality like media players, save to gallery, add to calendar</p>
           '
         >
-          <Heading size={1} textColor="secondary" caps>Use case - Ad bridge</Heading>
+          <Heading size={1} fit textColor="secondary" caps>Use case - Ad bridge</Heading>
           <List textColor="tertiary">
             <Appear><ListItem>Ad SDK for native apps</ListItem></Appear>
             <Appear><ListItem>Ads are running HTML/CSS/JavaScript in a webview</ListItem></Appear>
             <Appear><ListItem>Ads want to use native functionality</ListItem></Appear>
             <Appear><ListItem>MRAID (Mobile Rich Media Ad Interface Definitions)</ListItem></Appear>
-            <Appear><ListItem>Wisper 🙌</ListItem></Appear>
+            <Appear><ListItem>Wisper! 🙌</ListItem></Appear>
           </List>
         </Slide>
         <Slide
@@ -251,7 +253,7 @@ export default class Presentation extends React.Component {
             <Appear><ListItem>Bug fixes to the SDK takes months or years to replace the previous version</ListItem></Appear>
             <Appear><ListItem>Publishers (app owners) have to update their app with a new SDK</ListItem></Appear>
             <Appear><ListItem>Users have to update the publishers' app</ListItem></Appear>
-            <Appear><ListItem>Wisper 🎉</ListItem></Appear>
+            <Appear><ListItem>Wisper! 🎉</ListItem></Appear>
           </List>
         </Slide>
         <Slide bgImage={images.victorystick} bgDarken={0.8}>
@@ -260,7 +262,7 @@ export default class Presentation extends React.Component {
             <ListItem>Oskar Segersvärd (Mastermind)</ListItem>
             <ListItem>Patrik Nyblad (iOS)</ListItem>
             <ListItem>Ehssan Hoorvash (Android)</ListItem>
-            <ListItem>Rana Hamid (Android</ListItem>
+            <ListItem>Rana Hamid (Android)</ListItem>
             <ListItem>Fredrik Andersson (Fanboy)</ListItem>
           </List>
         </Slide>
@@ -278,6 +280,9 @@ export default class Presentation extends React.Component {
             style={{minHeight: '40vh', maxHeight: '40vh'}}
           />
         </Slide>
+        <Slide>
+          <Heading size={1} textColor="secondary" caps>Bridging iframes</Heading>
+        </Slide>
         <Slide transition={["fade"]}
           notes='
             <p>One of the few built in bridges is for iframes</p>
@@ -285,7 +290,7 @@ export default class Presentation extends React.Component {
             <p>Call functions with bridge invoke, get a promise back</p>
           '
         >
-          <Heading size={1} fit textColor="secondary" caps>Bridging iframes - parent code</Heading>
+          <Heading size={1} fit textColor="secondary" caps>Parent code</Heading>
           <CodePane
             lang='javascript'
             source={require('raw-loader!../assets/code/wisper-usage-iframe-parent.js')}
@@ -300,7 +305,7 @@ export default class Presentation extends React.Component {
             <p>Expose function</p>
           '
         >
-          <Heading size={1} fit textColor="secondary" caps>Bridging iframes - iframe code</Heading>
+          <Heading size={1} fit textColor="secondary" caps>Iframe code</Heading>
           <CodePane
             lang='javascript'
             source={require('raw-loader!../assets/code/wisper-usage-iframe-child.js')}
@@ -310,7 +315,89 @@ export default class Presentation extends React.Component {
           />
         </Slide>
         <Slide>
-          <Interactive />
+          <Heading size={1} fit textColor="secondary" caps>Bridging web workers</Heading>
+          <List textColor="tertiary">
+            <Appear><ListItem>Web workers are a way to run code in a separate thread</ListItem></Appear>
+            <Appear><ListItem>The worker has no access to the DOM (or anything from the owners context)</ListItem></Appear>
+            <Appear><ListItem>It does have `onmessage` and `postMessage` methods similar to iframes</ListItem></Appear>
+            <Appear><ListItem>Wisper! 🤓</ListItem></Appear>
+          </List>
+        </Slide>
+        <CodeSlide
+          notes='
+            <p>On close I would remove my `message` listener if </p>
+            <p>Expose function</p>
+          '
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/wisper-user-worker-bridge.js")}
+          ranges={[
+            { loc: [0, 270], title: "Custom WebWorkerBridge" },
+            { loc: [2, 3], note: "The worker bridge extends the Wisper BaseBridge" },
+            { loc: [3, 6], note: "and takes the target as it's only argument" },
+            { loc: [7, 12], note: "A bridge needs to listen for data somehow..." },
+            { loc: [13, 16], note: "...and pass it to receiveJSON from BaseBridge" },
+            { loc: [17, 20], note: "A bridge also needs to implement sendJSON (in this case sending data with `postMessage`)" },
+            { loc: [21, 27], note: "close is optional to implement, for cleanup like removing the `message` listener" },
+            { loc: [29, 30], image: images.wisperLogo },
+          ]}
+        />
+        <CodeSlide
+          notes='
+            <p>On close I would remove my `message` listener if </p>
+            <p>Expose function</p>
+          '
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/wisper-rpc-worker-parent.js")}
+          ranges={[
+            { loc: [0, 270], title: "PARENT CODE" },
+            { loc: [0, 6], note: "We need to import some more stuff from Wisper this time..." },
+            { loc: [6, 7], note: "...and the bridge we just created" },
+            { loc: [8, 10], note: "Start a new worker and initialize the bridge" },
+            { loc: [11, 14], note: "The worker context doesn't have console.log(), so let's make one" },
+            { loc: [15, 16], note: "interfaceName is a decorator that tells the bridge which route to connect our class to" },
+            { loc: [16, 19], note: "properties is a decorator that makes changes to specified properties emit event messages across the bridge" },
+            { loc: [19, 20], note: "The new class extends Local" },
+            { loc: [20, 23], note: "DomNode takes a CSS style selector as it's argument and tries to find an element" },
+            { loc: [23, 27], note: "To test the properties decorator we set the color to green every 5 seconds" },
+            { loc: [28, 35], note: "The implementation of style tries to apply every supplied style property to the element as is" },
+            { loc: [37, 40], note: "We listen to clicks on a button to tell the worker to pick a color" },
+          ]}
+        />
+        <CodeSlide
+          notes='
+            <p>On close I would remove my `message` listener if </p>
+            <p>Expose function</p>
+          '
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/wisper-rpc-worker-child.js")}
+          ranges={[
+            { loc: [0, 270], title: "WORKER CODE" },
+            { loc: [2, 3], note: "The worker imports Remote instead of Local" },
+            { loc: [8, 9], note: "Sets up the bridge the same way, but with a reference to self" },
+            { loc: [10, 13], note: "console.log() passes along the args across the bridge" },
+            { loc: [15, 19], note: "Same decorator setup as before" },
+            { loc: [19, 20], note: "This DomNode extends Remote" },
+            { loc: [20, 25], note: "And the style implementation just passes on the info to the other side" },
+            { loc: [27, 29], note: "Listen for calls to pickColor and create a new node the first time" },
+            { loc: [29, 30], note: "Apply 🚀 science to generate a random color" },
+            { loc: [30, 31], note: "Call style() on your class and it will magically apply the styles in the DOM of the parent context" },
+            { loc: [31, 34], note: "Whenever the color changes on the other side this code runs" },
+          ]}
+        />
+        <Slide>
+          <Heading size={1} textColor="secondary" caps>Demo</Heading>
+        </Slide>
+
+        <Slide>
+          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+            Thank you!
+          </Heading>
+          <Link href="https://twitter.com/fredrikanderzon">
+            <Text bold textSize="1em" textColor="tertiary">@fredrikanderzon</Text>
+          </Link>
         </Slide>
 
       </Deck>

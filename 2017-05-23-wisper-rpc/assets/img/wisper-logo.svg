@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.1 (25234) - http://www.bohemiancoding.com/sketch -->
+    <title>Wisper-Logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="1280" sketch:type="MSArtboardGroup" transform="translate(-576.000000, -140.000000)">
+            <g id="Wisper-Logo" sketch:type="MSLayerGroup" transform="translate(576.000000, 140.000000)">
+                <rect id="Rectangle-3" fill="#6CD381" sketch:type="MSShapeGroup" transform="translate(64.000000, 64.000000) rotate(-45.000000) translate(-64.000000, -64.000000) " x="19" y="19" width="90" height="90"></rect>
+                <g id="Path-1-+-Path-1" transform="translate(64.000000, 64.000000) scale(1, -1) translate(-64.000000, -64.000000) translate(34.000000, 40.000000)" stroke="#FFFFFF" stroke-width="2" sketch:type="MSShapeGroup">
+                    <path d="M0,32.493445 C6.9386803,32.493445 3.58125435,1.86799887 10.2961062,1.86799887 C17.0109581,1.86799887 15.4441594,48 25.6283514,48 C35.8125435,48 33.9285389,10.7771539 41.0343632,2.62114089 C48.1401875,-5.53487214 53.9890092,19.4598294 55,24.8992564" id="Path-1"></path>
+                    <path d="M4,28.5697507 C7.09109588,19.5736268 10.6554622,-2.9567812 17.5666634,0.323595509 C24.4778646,3.60397221 23.9597118,48 34.2086687,48 C44.4576257,48 42.4303595,1.4548295 49.6384171,1.4548295 C56.8464748,1.4548295 53.0171942,31.1811569 60,31.1811569" id="Path-1"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
