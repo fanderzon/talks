@@ -1,0 +1,6 @@
+{
+  "jsonrpc": "2.0",
+  "method": "getUser",
+  "params": [123456],
+  "id": 1
+}
